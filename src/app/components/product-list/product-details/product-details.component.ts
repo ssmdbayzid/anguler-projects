@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, effect, Input} from '@angular/core';
 import {Product} from '../../../models/products';
 import {CartService} from '../../../services/cart.service';
 import {NgIf} from '@angular/common';
@@ -21,11 +21,15 @@ export class ProductDetailsComponent {
 
   constructor(
     private cartService: CartService,
-  ){}
+  ){
+    effect(() => {
+      this.cartItems = this.cartService.getCart();
+      this.checkCartItem();
+    });
+  }
 
   ngOnInit():void{
-    this.cartItems = this.cartService.getCart()
-    this.checkCartItem()
+    this.checkCartItem();
   }
 
 
@@ -35,13 +39,13 @@ export class ProductDetailsComponent {
      this.cartService.removeFromCart(product?.id)
      this.checkCartItem()
      console.log(this.cartItem);
+     this.cartItems = this.cartService.getCart();
    }else{
      this.cartService.addToCart(product)
      this.checkCartItem()
+     this.cartItems = this.cartService.getCart();
    }
   }
-
-
 
   checkCartItem(){
     this.cartItem = this.cartItems.find((f: Product)=>f?.id=== this.product?.id)

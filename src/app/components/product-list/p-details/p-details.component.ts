@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, effect, Input} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {Product} from '../../../models/products';
 import {CartService} from '../../../services/cart.service';
@@ -18,7 +18,12 @@ export class PDetailsComponent {
 
   constructor(
     private cartService: CartService,
-  ){}
+  ){
+    effect(() => {
+      this.cartItems = this.cartService.getCart();
+      this.checkCartItem();
+    });
+  }
 
   ngOnInit() {
     this.cartItems = this.cartService.getCart();

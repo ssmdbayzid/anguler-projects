@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, effect} from '@angular/core';
 import {CartService} from '../../services/cart.service';
 
 @Component({
@@ -11,6 +11,12 @@ export class HeaderComponent {
   cartItems: any[] = [];
 
   constructor (private cartService: CartService){
+    effect(() => {
+      this.cartItems = this.cartService.getCart();
+    });
+  };
+
+  ngOnInit(){
     this.cartItems = this.cartService.getCart();
   }
 }
