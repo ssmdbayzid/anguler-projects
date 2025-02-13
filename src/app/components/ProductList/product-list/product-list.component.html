@@ -1,0 +1,24 @@
+@if(products().length) {
+  <p>product-list works! {{ products().length }}</p>
+} @else {
+  <p>product-list works! 0</p>
+}
+
+
+@if(products().length) {
+
+    <div class="products-list">
+  @for(product of products(); track $index){
+    <app-product-cart [product]="product"></app-product-cart>
+      }
+    </div>
+}@else{
+  <ng-template >
+    <p>No products available.</p>
+  </ng-template>
+  }
+
+
+
+
+

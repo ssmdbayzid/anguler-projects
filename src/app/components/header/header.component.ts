@@ -1,22 +1,25 @@
-import {Component, effect} from '@angular/core';
+import {Component, effect, inject} from '@angular/core';
 import {CartService} from '../../services/cart.service';
+import {HeaderTopComponent} from './header-top/header-top.component';
+import {HeaderMainComponent} from './header-main/header-main.component';
 
 @Component({
   selector: 'app-header',
-  imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  imports: [
+    HeaderTopComponent,
+    HeaderMainComponent
+  ],
+  styleUrls: ['./header.component.scss'] // Fixed styleUrls
 })
 export class HeaderComponent {
-  cartItems: any[] = [];
+  private readonly cartService = inject(CartService);
 
-  constructor (private cartService: CartService){
+  cartItems:any;
+
+  constructor() {
     effect(() => {
-      this.cartItems = this.cartService.getCart();
+      this.cartItems =  this.cartService.getCart()
     });
-  };
-
-  ngOnInit(){
-    this.cartItems = this.cartService.getCart();
   }
 }
