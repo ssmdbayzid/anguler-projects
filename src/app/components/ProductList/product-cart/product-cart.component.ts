@@ -1,11 +1,13 @@
-import {Component, computed, Input, signal} from '@angular/core';
+import {Component, computed, Input, OnInit, signal} from '@angular/core';
 import {Product} from '../../../models/products';
 import {NgIf} from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-cart',
   imports: [
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './product-cart.component.html',
   styleUrl: './product-cart.component.scss'
@@ -22,4 +24,9 @@ export class ProductCartComponent {
   toggleFavorite = () => {
     this.isFavorite.set(!this.isFavorite());
   }
+
+  ngOnInit(){
+    console.log("inputData", this.product);
+  }
+   
 }

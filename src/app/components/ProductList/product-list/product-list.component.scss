@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr); // ✅ 5 Columns for Desktop
   gap: 24px;
-  margin: 0 40px;
+  padding: 0 40px;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(4, 1fr); // ✅ 4 Columns for Medium Screens

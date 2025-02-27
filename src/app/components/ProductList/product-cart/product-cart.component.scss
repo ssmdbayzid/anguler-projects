@@ -31,13 +31,24 @@
       font-size: 18px;
       font-weight: bold;
       margin-bottom: 5px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      height: 100px;
     }
 
     .product-description {
       font-size: 14px;
       color: #6c757d;
-      line-height: 1.5;
-      flex-grow: 1; // ✅ Ensures description expands without affecting height
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
     }
 
     .product-price {

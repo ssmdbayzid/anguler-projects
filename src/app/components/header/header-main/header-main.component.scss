@@ -1,0 +1,40 @@
+@import "exports/btn";
+//@import "src/theme/exports/_btn.scss";
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.cart{
+  display: flex;
+  gap: 5px;
+}
+.nav-links{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logo{
+  height: 50px;
+  width: 100px;
+}
+
+.auth{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  .icon{
+    width: 20px;
+    height: 20px;
+  }
+}
+.main-nav-right{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

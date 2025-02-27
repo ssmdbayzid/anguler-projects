@@ -10,7 +10,21 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
 .container{
   padding: 0 15px;
   margin: 0 auto;
 }
+
+
+ul li{
+  list-style: none;
+}
+
+@import "base";
+@import "material/theme";
+@import "print";

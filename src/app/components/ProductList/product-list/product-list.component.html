@@ -1,14 +1,14 @@
-@if(products().length) {
-  <p>product-list works! {{ products().length }}</p>
+@if(products1?.length) {
+  <p>product-list works! {{ products1?.length }}</p>
 } @else {
   <p>product-list works! 0</p>
 }
 
 
-@if(products().length) {
+@if(products1?.length) {
 
     <div class="products-list">
-  @for(product of products(); track $index){
+  @for(product of products1; track $index){
     <app-product-cart [product]="product"></app-product-cart>
       }
     </div>

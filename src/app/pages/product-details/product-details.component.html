@@ -1,0 +1,21 @@
+@if(isLoading){
+  <app-spinner></app-spinner>
+}
+@else if(!isLoading && product){
+  <div class="product-container">
+    <img [src]="product?.image" [alt]="product?.title" class="product-image" />
+    <h1 class="product-title">{{ product?.title }}</h1>
+    <p class="product-category">Category: {{ product?.category }}</p>
+    <p class="product-price">$ {{ product?.price }}</p>
+    <p class="product-description">{{ product?.description }}</p>
+
+    <div class="product-rating">
+      ⭐ {{ product?.rating.rate }} ({{ product?.rating.count }} reviews)
+    </div>
+
+    <!--  <button (click)="toggleFavorite()" class="favorite-btn">-->
+    <!--    {{ isFavorite() ? '💖 Favorited' : '🤍 Favorite' }}-->
+    <!--  </button>-->
+  </div>
+}
+

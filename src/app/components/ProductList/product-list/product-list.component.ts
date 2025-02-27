@@ -1,6 +1,8 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {Product} from '../../../models/products';
 import {ProductCartComponent} from '../product-cart/product-cart.component';
+import { ProductsService } from '../../../services/common/products.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -10,9 +12,18 @@ import {ProductCartComponent} from '../product-cart/product-cart.component';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
-export class ProductListComponent implements OnInit {
 
- products = signal<Product[]>([
+// Inject
+
+
+
+export class ProductListComponent implements OnInit {
+  public readonly productService = inject(ProductsService);
+
+  products1:any;
+  isLoading : boolean = false;
+ /*
+  products = signal<Product[]>([
      {
        "id": 1,
        "name": "Laptop",
@@ -56,7 +67,28 @@ export class ProductListComponent implements OnInit {
    ]
  );
 
+ */
+ // Subscriptions
 
- ngOnInit(): void {
+ private subscriptions: Subscription[] = [];
+
+
+
+ ngOnInit() {
+   this.getAllProducts();    
+ }
+
+ private getAllProducts (){ 
+  const subscription = this.productService.getProducts().subscribe({
+    next: res=>{
+      this.products1 = res;
+      this.isLoading = false;
+    },
+    error: err=>{
+      console.log(err);
+      this.isLoading = false;
+    }
+  }); 
+  this.subscriptions.push(subscription) 
  }
 }
